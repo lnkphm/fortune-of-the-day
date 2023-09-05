@@ -5,7 +5,7 @@ function getRandom(min, max) {
 }
 
 async function getFortune(id) {
-    const response = await fetch(`http://127.0.0.1:5000/fortunes/${id}`);
+    const response = await fetch(`https://api.lnkphm.online/fortunes/${id}`);
     const fortune = await response.json();
     return fortune
 }
