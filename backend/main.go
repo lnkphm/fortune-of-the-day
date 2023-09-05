@@ -199,6 +199,7 @@ func main() {
 			log.Fatal(err)
 		}
 	}
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.New()
 	router.GET("/fortunes", fortuneTable.GetFortuneHandler)
 	router.GET("/fortunes/:id", fortuneTable.GetFortuneByIdHandler)
