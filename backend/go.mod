@@ -8,6 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue v1.10.39
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression v1.4.66
 	github.com/aws/aws-sdk-go-v2/service/dynamodb v1.21.5
+	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 )
 

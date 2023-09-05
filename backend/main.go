@@ -15,6 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 )
 
 type Fortune struct {
@@ -28,7 +29,7 @@ func (fortune Fortune) GetKey() map[string]types.AttributeValue {
 		panic(err)
 	}
 	return map[string]types.AttributeValue{
-		"id":   id,
+		"id": id,
 	}
 }
 
@@ -177,6 +178,10 @@ func (dynamoTable DynamoTable) GetFortuneByIdHandler(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, fortune)
 }
 
+func DefaultHandler(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, gin.H{"message": "Hello"})
+}
+
 func main() {
 	config, err := config.LoadDefaultConfig(context.TODO())
 	if err != nil {
@@ -199,10 +204,12 @@ func main() {
 			log.Fatal(err)
 		}
 	}
-	gin.SetMode(gin.ReleaseMode)
-	router := gin.New()
+	router := gin.Default()
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{"https://fortune.lnkphm.online"}
+	router.Use(cors.New(corsConfig))
+	router.GET("/", DefaultHandler)
 	router.GET("/fortunes", fortuneTable.GetFortuneHandler)
 	router.GET("/fortunes/:id", fortuneTable.GetFortuneByIdHandler)
 	router.Run(":5000")
-
 }
