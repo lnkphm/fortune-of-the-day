@@ -1,0 +1,43 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  color: #fafafa;
+  background-color: #141414;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+}
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-container {
+  position: fixed;
+  padding: 3rem;
+}
+
+.title-text {
+  font-size: 2rem;
+  font-weight: bold;
+  border-bottom: 2px #fafafa solid;
+}
+
+.fortune-container {
+  padding: 3rem;
+}
+
+.fortune-text {
+  font-size: 2rem;
+}
